@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RegisterApiController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,14 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function(){
 
-    Route::post('register', RegisterApiController::class);
+    Route::post('register_new_user', [RegisterApiController::class, 'store']);
 
-    Route::group(['middlewire' => 'auth:sanctum'], function(){
+    Route::resource('users123', UserController::class);
 
-    });
+    // Route::group(['middlewire' => 'auth:sanctum'], function(){
+
+    // });
 
 });
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+// Route::middleware('auth:sanctum')->get('v1/user', function (Request $request) {
 //     return $request->user();
 // });

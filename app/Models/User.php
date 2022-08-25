@@ -43,8 +43,9 @@ class User extends Authenticatable
     ];
 
     public static $rules  = [
-        'name'      => 'required|string:100',
-        'email'     => 'required|email'
+        'name'              => 'required|string:100',
+        'email'             => 'required|email|unique:users',
+        'confirm_password'  => 'same:password'
     ];
 
 

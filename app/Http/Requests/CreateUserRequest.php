@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateModelRequest extends FormRequest
+class CreateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +24,6 @@ class CreateModelRequest extends FormRequest
      */
     public function rules()
     {
-        $segments       = request()->segments();
-        $modelName      = ucfirst($segments[2]);
-        $model          = "App\\Models\\" . $modelName;
-        $modelObj       = new $model;
-        
-        return $modelObj::$rules;
+        return User::$rules;
     }
 }

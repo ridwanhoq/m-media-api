@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateModelRequest;
+use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +15,7 @@ class RegisterApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(CreateModelRequest $request)
+    public function store(CreateUserRequest $request)
     {
         try {
 
@@ -26,10 +26,12 @@ class RegisterApiController extends Controller
             ]);
 
             if ($user) {
-                // return 
+                return response()->json([
+                    'test'  => 'est'
+                ]);
             }
         } catch (Exception $error) {
-            
+            return $error;
         }
     }
 }
