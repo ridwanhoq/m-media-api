@@ -1,8 +1,40 @@
 <?php
 
-namespace App\Http\Components;
+namespace App\Http\Components\API;
 
-trait ApiResponseMessageHelperTrait{
+trait BaseApiTrait{
+
+    public function handleResponse($result, $msg){
+        
+        $res    =   [
+            'suceess'   => true,
+            'message'   => $msg,
+            'data'      => $result,
+        ];
+
+        return response()->json($res, 200);
+
+    }
+
+    public function handleError($error = []){
+
+        $error = [
+            'code'  => 404,
+            'msg'   => 'Not found.'
+        ];
+
+        $res    =   [
+            'success'   => false,
+            'message'   => $error['msg'],
+            'data'      => null
+        ];
+
+        return response()->json($res, $error['code']);
+    }
+    
+    public function apiActionMessage($item_name, $action){
+        return $item_name.' data is'.$action;
+    }
 
     public function apiDatumRequired($item_name){
         return $this->apiActionMessage($item_name, ' required');
@@ -61,8 +93,5 @@ trait ApiResponseMessageHelperTrait{
     public function apiNoDataError($item_name){
         return $item_name.' data not found!';
     } 
-
-    
-    
 
 }

@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Components\API\BaseApiTrait;
+use App\Http\Components\PaginationTrait;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\crf;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    use PaginationTrait, BaseApiTrait;
+
+    private $item_name  = "User";
+
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +25,23 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users  = User::all();
 
-        return response()->json($users);
+        try {
+            
+            $users          = User::paginate(10);
+
+            $users_data     = UserResource::collection($users);
+
+            $result = [
+                "links"     => $this->getPaginatedPages($users_data),
+                "records"   => $users_data
+            ];
+
+            return $this->handleResponse($result, $this->apiDataListed($this->item_name));
+
+        } catch (Exception $error) {
+            return $this->handleError($error);
+        }
     }
 
     /**
@@ -27,7 +51,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,9 +60,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        try {
+            
+            $user   = User::create($request);
+
+            return $this->handleResponse($user);
+
+        } catch (Exception $error) {
+            
+        }
     }
 
     /**
@@ -47,9 +79,18 @@ class UserController extends Controller
      * @param  \App\Models\crf  $crf
      * @return \Illuminate\Http\Response
      */
-    public function show(crf $crf)
+    public function show(User $user)
     {
-        //
+        try {
+            
+            $result  = new UserResource( $user );
+
+            return $this->handleResponse($result, $this->apiDataShown($this->item_name));
+
+
+        } catch (Exception $error) {
+            return $this->handleError($error);
+        }
     }
 
     /**
@@ -58,7 +99,7 @@ class UserController extends Controller
      * @param  \App\Models\crf  $crf
      * @return \Illuminate\Http\Response
      */
-    public function edit(crf $crf)
+    public function edit(User $user)
     {
         //
     }
@@ -70,7 +111,7 @@ class UserController extends Controller
      * @param  \App\Models\crf  $crf
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, crf $crf)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -81,7 +122,7 @@ class UserController extends Controller
      * @param  \App\Models\crf  $crf
      * @return \Illuminate\Http\Response
      */
-    public function destroy(crf $crf)
+    public function destroy(User $user)
     {
         //
     }

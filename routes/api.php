@@ -20,7 +20,7 @@ Route::group(['prefix' => 'v1'], function(){
 
     Route::post('register_new_user', [RegisterApiController::class, 'store']);
 
-    Route::resource('users123', UserController::class);
+    Route::resource('users', UserController::class);
 
     // Route::group(['middlewire' => 'auth:sanctum'], function(){
 
