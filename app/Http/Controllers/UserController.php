@@ -64,9 +64,11 @@ class UserController extends Controller
     {
         try {
             
-            $user   = User::create($request);
+            $userInputs = User::input_fields();
 
-            return $this->handleResponse($user);
+            $user       = User::create($userInputs);
+
+            return $this->handleResponse($user, $this->apiDataInserted($this->item_name));
 
         } catch (Exception $error) {
             
