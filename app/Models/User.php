@@ -50,7 +50,7 @@ class User extends Authenticatable
     ];
 
 
-    public static function input_fields(){
+    public function scopeInputFields(){
         return [
             'name'          => request()->name,
             'email'         => request()->email,

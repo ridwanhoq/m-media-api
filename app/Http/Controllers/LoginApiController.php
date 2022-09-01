@@ -20,24 +20,22 @@ class LoginApiController extends Controller
         try {
 
             $email      = $request->email;
-            $password   = Hash::make($request->password);
+            $password   = Hash::make($request->password); //return $password;
 
             $user       = User::where([
                                 'email'     => $email,
-                                'password'  => $password
+                                // 'password'  => $password
                             ])->first();
-
+                            
+                
             if (empty($user)) {
-                return $this->handleError([
-                    'code'  => 402,
-                    'msg'   => $this->apiNoDataError($this->item_name)
-                ]);
+                return $this->handleResponse($this->apiNoDataError($this->item_name), 404);
             }
-// return $user->createToken(config('app.name'))->plainTextToken;
+
             $data['api_token']  = $user->createToken(config('app.name'))->plainTextToken;
             $data['user']       = $user;
 
-            return $this->handleResponse($data, "User logged in successfully.");
+            return $this->handleResponse("User logged in successfully.", 200, $data);
         } catch (Exception $error) {
             return $this->handleError($error);
         }

@@ -37,7 +37,7 @@ class UserController extends Controller
                 "records"   => $users_data
             ];
 
-            return $this->handleResponse($result, $this->apiDataListed($this->item_name));
+            return $this->handleResponse($this->apiDataListed($this->item_name), 200, $result);
 
         } catch (Exception $error) {
             return $this->handleError($error);
@@ -63,14 +63,20 @@ class UserController extends Controller
     public function store(CreateUserRequest $request)
     {
         try {
+
+            $user       = User::query();
             
-            $userInputs = User::input_fields();
+            $userInputs = $user->inputFields();
 
-            $user       = User::create($userInputs);
+            $user       = $user->create($userInputs);
 
-            return $this->handleResponse($user, $this->apiDataInserted($this->item_name));
+            $user_data  = new UserResource($user);
 
-        } catch (Exception $error) {
+            return $this->handleResponse($this->apiDataInserted($this->item_name), 200, $user_data);
+
+        } catch (Exception $error) {   
+            
+            return $this->handleError($error);
             
         }
     }
@@ -87,7 +93,7 @@ class UserController extends Controller
             
             $result  = new UserResource( $user );
 
-            return $this->handleResponse($result, $this->apiDataShown($this->item_name));
+            return $this->handleResponse($this->apiDataShown($this->item_name), 200, $result);
 
 
         } catch (Exception $error) {

@@ -4,32 +4,30 @@ namespace App\Http\Components\API;
 
 trait BaseApiTrait{
 
-    public function handleResponse($result, $msg){
+    public function handleResponse($msg, $statusCode = 200, $result = null){
         
         $res    =   [
-            'suceess'   => true,
+            'suceess'   => $statusCode == 200 ? true:false,
             'message'   => $msg,
             'data'      => $result,
         ];
 
-        return response()->json($res, 200);
+        return response()->json($res, $statusCode);
 
     }
 
-    public function handleError($error = []){
-
-        $error = [
-            'code'  => 404,
-            'msg'   => 'Not found.'
-        ];
+    public function handleError($errors = null){
 
         $res    =   [
             'success'   => false,
-            'message'   => $error['msg'],
+            'message'   => $errors == null ?: "$errors->getMessage() On File: $errors->getFile(), On line: $errors->getLine()",
             'data'      => null
         ];
 
-        return response()->json($res, $error['code']);
+        $error_status_code  = $errors->getCode();
+        $status_code        = $error_status_code == 0 || !is_numeric( $error_status_code ) || $error_status_code > 500 ? 500:$error_status_code;
+
+        return response()->json($res, $status_code);
     }
     
     public function apiActionMessage($item_name, $action){
