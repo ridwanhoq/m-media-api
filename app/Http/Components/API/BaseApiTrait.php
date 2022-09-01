@@ -2,15 +2,17 @@
 
 namespace App\Http\Components\API;
 
+use Illuminate\Http\JsonResponse;
+
 trait BaseApiTrait
 {
     /**
      * @param string $msg
      * @param int $statusCode
      * @param mixed|null $result
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function handleResponse(string $msg, int $statusCode = 200, mixed $result = null)
+    public function handleResponse(string $msg, int $statusCode = 200, mixed $result = null): JsonResponse
     {
         return response()->json(
             [
@@ -37,7 +39,11 @@ trait BaseApiTrait
         return true;
     }
 
-    public function handleError($errors = null)
+    /**
+     * @param $errors
+     * @return JsonResponse
+     */
+    public function handleError($errors = null): JsonResponse
     {
         if ($errors === null) {
             return response()->json([], 404);
