@@ -17,18 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'v1'], function(){
+Route::group(['prefix' => 'v1'], function () {
 
     Route::post('login', LoginApiController::class);
 
-    Route::resource('users', UserController::class);
+    Route::group(['middlewire' => 'auth:sanctum'], function () {
 
-    Route::resource('categories', CategoryController::class);
 
-    // Route::group(['middlewire' => 'auth:sanctum'], function(){
+        Route::resource('users', UserController::class);
 
-    // });
-
+        Route::resource('categories', CategoryController::class);
+    });
+    
 });
 
 // Route::middleware('auth:sanctum')->get('v1/user', function (Request $request) {
