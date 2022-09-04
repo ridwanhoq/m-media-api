@@ -10,32 +10,30 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginApiController extends Controller
 {
-
     use BaseApiTrait;
-
-    private $item_name  = "User";
 
     public function __invoke(Request $request)
     {
+        // ?? Validation
+
         try {
+            $user = User::where([
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ])->first();
 
-            $email      = $request->email;
-            $password   = Hash::make($request->password); //return $password;
-
-            $user       = User::where([
-                                'email'     => $email,
-                                // 'password'  => $password
-                            ])->first();
-                            
-                
             if (empty($user)) {
-                return $this->handleResponse($this->apiNoDataError($this->item_name), 404);
+                return $this->handleResponse(
+                    $this->apiNoDataError('User'),
+                    404
+                );
             }
 
-            $data['api_token']  = $user->createToken(config('app.name'))->plainTextToken;
-            $data['user']       = $user;
-
-            return $this->handleResponse("User logged in successfully.", 200, $data);
+            return $this->handleResponse(
+                "User logged in successfully.",
+                200,
+                $user->createToken($user->email)->plainTextToken
+            );
         } catch (Exception $error) {
             return $this->handleError($error);
         }
