@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginApiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -21,6 +22,8 @@ Route::group(['prefix' => 'v1'], function(){
     Route::post('login', LoginApiController::class);
 
     Route::resource('users', UserController::class);
+
+    Route::resource('categories', CategoryController::class);
 
     // Route::group(['middlewire' => 'auth:sanctum'], function(){
 

@@ -28,7 +28,7 @@ class UserController extends Controller
 
         try {
             
-            $users          = User::paginate(10);
+            $users          = User::latest()->paginate(10);
 
             $users_data     = UserResource::collection($users);
 
