@@ -41,7 +41,7 @@ class UserController extends Controller
             
             $users_data = UserResource::collection(
                 User::latest()->paginate(10)
-            );
+            ); 
 
             return $this->handleResponse(
                 $this->apiDataListed($this->item_name),
@@ -66,9 +66,11 @@ class UserController extends Controller
             return $this->handleResponse(
                 $this->apiDataInserted($this->item_name),
                 200,
-                new UserResource(
-                    User::create($this->inputFields())
-                )
+                [
+                    "records"   =>  new UserResource(
+                        User::create($this->inputFields())
+                    )
+                ]
             );
         } catch (Exception $error) {
             return $this->handleError($error);
