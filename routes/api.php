@@ -23,10 +23,10 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::group(['middlewire' => 'auth:sanctum'], function () {
 
-
         Route::resource('users', UserController::class);
 
         Route::resource('categories', CategoryController::class);
+
     });
     
 });

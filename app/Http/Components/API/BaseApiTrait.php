@@ -12,7 +12,7 @@ trait BaseApiTrait
      * @param mixed|null $result
      * @return JsonResponse
      */
-    public function handleResponse(string $msg, int $statusCode = 200, array $result = null): JsonResponse
+    public function handleResponse(string $msg, int $statusCode = 200, $result = null): JsonResponse
     {
         return response()->json(
             [

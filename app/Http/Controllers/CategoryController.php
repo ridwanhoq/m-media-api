@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Components\API\BaseApiTrait;
+use App\Http\Components\PaginationTrait;
+use App\Http\Resources\CategoryRresource;
 use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
@@ -10,7 +12,14 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
-    use BaseApiTrait;
+    use BaseApiTrait, PaginationTrait;
+
+    private $item_name;
+
+    public function __construct()
+    {
+        $this->item_name    = "Category";
+    }
 
     /**
      * Display a listing of the resource.
@@ -20,8 +29,17 @@ class CategoryController extends Controller
     public function index()
     {
         try {
+
+            $categories = CategoryRresource::collection(Category::latest()->paginate(10));
             
-            $categories = Category::orderByDesc('id')->all();
+            return $this->handleResponse(
+                $this->apiDataListed($this->item_name),
+                200,
+                [
+                    'links'     => $this->getPaginatedPages($categories),
+                    'records'   => $categories
+                ]
+            );
 
         } catch (Exception $error) {
             
