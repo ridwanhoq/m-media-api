@@ -21,7 +21,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('login', LoginApiController::class);
 
-    Route::group(['middlewire' => 'auth:sanctum'], function () {
+    Route::group(['middleware' => 'auth:sanctum'], function () {
 
         Route::resource('users', UserController::class);
 

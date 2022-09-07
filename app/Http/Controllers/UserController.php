@@ -38,10 +38,10 @@ class UserController extends Controller
             // ];
 
             // return $this->handleResponse($this->apiDataListed($this->item_name), 200, $result);
-            
+
             $users_data = UserResource::collection(
                 User::latest()->paginate(10)
-            ); 
+            );
 
             return $this->handleResponse(
                 $this->apiDataListed($this->item_name),
@@ -96,10 +96,12 @@ class UserController extends Controller
     public function show(string $id)
     {
         try {
-            $user = User::query()->find($id);
+            $user = User::find($id);
 
-            if (!$user) {
-                // Return no user found (JSON)
+            if (empty($user)) {
+                return $this->handleResponse(
+                    $this->apiNoDataError($this->item_name)
+                );
             }
 
             return $this->handleResponse(

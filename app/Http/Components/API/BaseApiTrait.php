@@ -12,7 +12,7 @@ trait BaseApiTrait
      * @param mixed|null $result
      * @return JsonResponse
      */
-    public function handleResponse(string $msg, int $statusCode = 200, $result = null): JsonResponse
+    public function handleResponse(string $msg, int $statusCode = 404, $result = null): JsonResponse
     {
         return response()->json(
             [
@@ -113,7 +113,7 @@ trait BaseApiTrait
      */
     public function apiDataListed(string $item_name): string
     {
-        return $this->apiActionMessage($item_name, ' listed');
+        return $this->apiActionMessage($item_name, 'listed');
     }
 
     /**
@@ -122,7 +122,7 @@ trait BaseApiTrait
      */
     public function apiDataShown(string $item_name): string
     {
-        return $this->apiActionMessage($item_name, ' shown');
+        return $this->apiActionMessage($item_name, 'shown');
     }
 
     public function apiDataNotInserted($item_name)
@@ -132,7 +132,7 @@ trait BaseApiTrait
 
     public function apiDataInserted($item_name, $reverse = "")
     {
-        return $this->apiActionMessage($item_name, $reverse . ' inserted');
+        return $this->apiActionMessage($item_name, $reverse . 'inserted');
     }
 
     public function apiDataNotUpdated($item_name)
@@ -142,7 +142,7 @@ trait BaseApiTrait
 
     public function apiDataUpdated($item_name, $reverse = "")
     {
-        return $this->apiActionMessage($item_name, $reverse . ' updated');
+        return $this->apiActionMessage($item_name, $reverse . 'updated');
     }
 
     public function apiDataNotDeleted($item_name)
@@ -152,7 +152,7 @@ trait BaseApiTrait
 
     public function apiDataDeleted($item_name, $reverse = "")
     {
-        return $this->apiActionMessage($item_name, $reverse . ' deleted');
+        return $this->apiActionMessage($item_name, $reverse . 'deleted');
     }
 
     public function apiNoDataError($item_name)
