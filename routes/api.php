@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function () {
 
+    Route::post('register_user', [UserController::class, 'store']);
+
     Route::post('login', LoginApiController::class);
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -26,9 +28,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::resource('users', UserController::class);
 
         Route::resource('categories', CategoryController::class);
-
     });
-    
 });
 
 // Route::middleware('auth:sanctum')->get('v1/user', function (Request $request) {

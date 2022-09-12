@@ -8,6 +8,7 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -109,6 +110,35 @@ class UserController extends Controller
                 200,
                 new UserResource($user)
             );
+        } catch (Exception $error) {
+            return $this->handleError($error);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $user = User::find($id);
+
+            $user->update($request->all());
+
+            $user_data = new UserResource($user);
+
+            return $this->handleResponse($this->apiDataUpdated($this->item_name), 200, $user_data);
+        } catch (Exception $error) {
+            return $this->handleError($error);
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+
+            $user = User::find($id);
+
+            $user->delete();
+
+            return $this->handleResponse($this->apiDataDeleted($this->item_name), 200);
         } catch (Exception $error) {
             return $this->handleError($error);
         }

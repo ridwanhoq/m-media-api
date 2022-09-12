@@ -51,6 +51,10 @@ class Handler extends ExceptionHandler
 
         if($request->hasHeader('Authorization')){
             return response()->json(['error' => 'Unauthenticated'], 401);
+        }else{
+            // return redirect()->guest(route('login'));
+            return $this->handleResponse($this->apiDataNotAuthorized(), 401);
         }
+    
     }
 }

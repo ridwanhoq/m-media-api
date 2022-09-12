@@ -19,7 +19,7 @@ class LoginApiController extends Controller
         try {
             $user = User::where([
                 'email' => $request->email,
-                'password' => Hash::make($request->password)
+                // 'password' => Hash::make($request->password)
             ])->first();
 
             if (empty($user)) {
