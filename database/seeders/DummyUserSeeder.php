@@ -16,9 +16,10 @@ class DummyUserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name'      => 'user',
-            'email'     => 'admin@admin.com',
-            'password'  => Hash::make('1234')
+            "name"      => "user",
+            "name_bn"   => "ব্যবহারকারী",
+            "email"     => "admin@admin.com",
+            "password"  => Hash::make("1234")
         ]);
     }
 }

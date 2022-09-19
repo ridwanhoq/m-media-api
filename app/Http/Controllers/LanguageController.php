@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Components\API\BaseApiTrait;
+use App\Http\Resources\UserLanguageResource;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\App;
@@ -27,10 +28,7 @@ class LanguageController extends Controller
             App::setLocale($locale);
             Session::put('locale', $locale);
 
-            $result = [
-                'id'    => $user->id,
-                'lang'  => $user->lang
-            ];
+            $result = new UserLanguageResource($user);
 
             return $this->handleResponse($this->apiDataUpdated('Language'), 200, $result);
         } catch (Exception $error) {
