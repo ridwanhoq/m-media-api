@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Components\API\BaseApiTrait;
+use App\Http\Components\PaginationTrait;
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
+use Exception;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    use BaseApiTrait, PaginationTrait;
+
+    private $item_name;
+
+    public function __construct()
+    {
+        $this->item_name = "Task";
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +27,22 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $tasks_data = TaskResource::collection(
+                Task::latest()->paginate(10)
+            );
+
+            return $this->handleResponse(
+                $this->apiDataListed($this->item_name),
+                200,
+                [
+                    "links" => $this->getPaginatedPages($tasks_data),
+                    "records" => $tasks_data
+                ]
+            );
+        } catch (Exception $error) {
+            return $this->handleError($error);
+        }
     }
 
     /**

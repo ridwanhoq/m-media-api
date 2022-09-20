@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LoginApiController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,11 +27,18 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
 
+        //set language as english or bengali
+        Route::get('set_language/{locale}', [LanguageController::class, 'setLang']);
+
+        //users
         Route::resource('users', UserController::class);
 
+        //categories
         Route::resource('categories', CategoryController::class);
 
-        Route::get('set_language/{locale}', [LanguageController::class, 'setLang']);
+        //tasks
+        Route::resource('tasks', TaskController::class);
+        
 
     });
 });
