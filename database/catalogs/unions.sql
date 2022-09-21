@@ -1,49 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Mar 08, 2022 at 01:10 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.26
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `let_us_learn_dev`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `unions`
---
-
-CREATE TABLE IF NOT EXISTS `unions`(
-  `id` int(4) NOT NULL,
-  `upazilla_id` int(3) NOT NULL,
-  `name` varchar(25) NOT NULL,
-  `bn_name` varchar(25) NOT NULL,
-  `url` varchar(50) NOT NULL,
-  `status` tinyint(1) DEFAULT '1',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `unions`
---
-
-INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at`, `updated_at`) VALUES
+INSERT INTO `unions` (`id`, `upazila_id`, `name`, `name_bn`, `url`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Subil', 'সুবিল', 'subilup.comilla.gov.bd', NULL, NULL),
 (2, 1, 'North Gunaighor', 'উত্তর গুনাইঘর', 'gunaighornorthup.comilla.gov.bd', NULL, NULL),
 (3, 1, 'South Gunaighor', 'দক্ষিণ গুনাইঘর', 'gunaighorsouth.comilla.gov.bd', NULL, NULL),
@@ -676,7 +631,7 @@ INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at
 (630, 65, 'Islampur', 'ইসলামপুর', 'islampurup.chittagong.gov.bd', NULL, NULL),
 (631, 65, 'South Rajanagar', 'দক্ষিণ রাজানগর', 'southrajanagarup.chittagong.gov.bd', NULL, NULL),
 (632, 65, 'Lalanagar', 'লালানগর', 'lalanagarup.chittagong.gov.bd', NULL, NULL);
-INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at`, `updated_at`) VALUES
+INSERT INTO `unions` (`id`, `upazila_id`, `name`, `name_bn`, `url`, `created_at`, `updated_at`) VALUES
 (633, 66, 'Kumira', 'কুমিরা', 'kumiraup.chittagong.gov.bd', NULL, NULL),
 (634, 66, 'Banshbaria', 'বাঁশবারীয়া', 'banshbariaup.chittagong.gov.bd', NULL, NULL),
 (635, 66, 'Barabkunda', 'বারবকুন্ড', 'barabkundaup.chittagong.gov.bd', NULL, NULL),
@@ -1320,7 +1275,7 @@ INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at
 (1273, 142, 'Auchpara', 'আউচপাড়া', 'auchparaup.rajshahi.gov.bd', NULL, NULL),
 (1274, 142, 'Sreepur', 'শ্রীপুর', 'sreepurup.rajshahi.gov.bd', NULL, NULL),
 (1275, 142, 'Basupara', 'বাসুপাড়া', 'basuparaup.rajshahi.gov.bd', NULL, NULL);
-INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at`, `updated_at`) VALUES
+INSERT INTO `unions` (`id`, `upazila_id`, `name`, `name_bn`, `url`, `created_at`, `updated_at`) VALUES
 (1276, 142, 'Kacharikoalipara', 'কাচাড়ী কোয়লিপাড়া', 'kacharikoaliparaup.rajshahi.gov.bd', NULL, NULL),
 (1277, 142, 'Suvodanga', 'শুভডাঙ্গা', 'suvodangaup.rajshahi.gov.bd', NULL, NULL),
 (1278, 142, 'Mariaup', 'মাড়িয়া', 'mariaup10.rajshahi.gov.bd', NULL, NULL),
@@ -1964,7 +1919,7 @@ INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at
 (1916, 211, 'Atlia', 'আটলিয়া', 'atliaup.khulna.gov.bd', NULL, NULL),
 (1917, 211, 'Dhamalia', 'ধামালিয়া', 'dhamaliaup.khulna.gov.bd', NULL, NULL),
 (1918, 211, 'Raghunathpur', 'রঘুনাথপুর', 'raghunathpurup.khulna.gov.bd', NULL, NULL);
-INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at`, `updated_at`) VALUES
+INSERT INTO `unions` (`id`, `upazila_id`, `name`, `name_bn`, `url`, `created_at`, `updated_at`) VALUES
 (1919, 211, 'Rongpur', 'রংপুর', 'rongpurup.khulna.gov.bd', NULL, NULL),
 (1920, 211, 'Shorafpur', 'শরাফপুর', 'shorafpurup.khulna.gov.bd', NULL, NULL),
 (1921, 211, 'Magurkhali', 'মাগুরখালি', 'magurkhaliup.khulna.gov.bd', NULL, NULL),
@@ -2596,7 +2551,7 @@ INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at
 (2547, 285, 'Baralekha', 'বড়লেখা', 'baralekhaup.moulvibazar.gov.bd', NULL, NULL),
 (2548, 285, 'Dakshinbhag Uttar', 'দক্ষিণভাগ (উত্তর)', 'dakshinbhaguttarup.moulvibazar.gov.bd', NULL, NULL),
 (2549, 285, 'Dakshinbhag Dakkhin', 'দক্ষিণভাগ (দক্ষিণ)', 'dakshinbhagdakshinup.moulvibazar.gov.bd', NULL, NULL);
-INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at`, `updated_at`) VALUES
+INSERT INTO `unions` (`id`, `upazila_id`, `name`, `name_bn`, `url`, `created_at`, `updated_at`) VALUES
 (2550, 285, 'Sujanagar', 'সুজানগর', 'sujanagarup.moulvibazar.gov.bd', NULL, NULL),
 (2551, 286, 'Adampur', 'আদমপুর', 'adampurup.moulvibazar.gov.bd', NULL, NULL),
 (2552, 286, 'Patanushar', 'পতনঊষার', 'patanusharup.moulvibazar.gov.bd', NULL, NULL),
@@ -3227,7 +3182,7 @@ INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at
 (3177, 354, 'Maijchar9', 'মাইজচর', 'maijchar9up.kishoreganj.gov.bd', NULL, NULL),
 (3178, 354, 'Homypur', 'হুমাইপর', 'homypurup.kishoreganj.gov.bd', NULL, NULL),
 (3179, 354, 'Halimpur', 'হালিমপুর', 'halimpurup.kishoreganj.gov.bd', NULL, NULL);
-INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at`, `updated_at`) VALUES
+INSERT INTO `unions` (`id`, `upazila_id`, `name`, `name_bn`, `url`, `created_at`, `updated_at`) VALUES
 (3180, 354, 'Sararchar', 'সরারচর', 'sararcharup.kishoreganj.gov.bd', NULL, NULL),
 (3181, 354, 'Dilalpur', 'দিলালপুর', 'dilalpurup.kishoreganj.gov.bd', NULL, NULL),
 (3182, 354, 'Dighirpar', 'দিঘীরপাড়', 'dighirparup.kishoreganj.gov.bd', NULL, NULL),
@@ -3869,7 +3824,7 @@ INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at
 (3818, 419, 'Gotamari', 'গোতামারী', 'gotamariup.lalmonirhat.gov.bd', NULL, NULL),
 (3819, 419, 'Vhelaguri', 'ভেলাগুড়ি', 'vhelaguriup.lalmonirhat.gov.bd', NULL, NULL),
 (3820, 419, 'Shaniajan', 'সানিয়াজান', 'shaniajanup.lalmonirhat.gov.bd', NULL, NULL);
-INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at`, `updated_at`) VALUES
+INSERT INTO `unions` (`id`, `upazila_id`, `name`, `name_bn`, `url`, `created_at`, `updated_at`) VALUES
 (3821, 419, 'Fakirpara', 'ফকিরপাড়া', 'fakirparaup.lalmonirhat.gov.bd', NULL, NULL),
 (3822, 419, 'Dawabari', 'ডাউয়াবাড়ী', 'dawabariup.lalmonirhat.gov.bd', NULL, NULL),
 (3823, 420, 'Sreerampur', 'শ্রীরামপুর', 'sreerampurup.lalmonirhat.gov.bd', NULL, NULL),
@@ -4504,7 +4459,7 @@ INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at
 (4452, 481, 'Bakshigonj', 'বকসীগঞ্জ', 'bakshigonjup.jamalpur.gov.bd', NULL, NULL),
 (4453, 481, 'Nilakhia', 'নিলক্ষিয়া', 'nilakhiaup.jamalpur.gov.bd', NULL, NULL),
 (4454, 481, 'Merurchar', 'মেরুরচর', 'merurcharup.jamalpur.gov.bd', NULL, NULL);
-INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at`, `updated_at`) VALUES
+INSERT INTO `unions` (`id`, `upazila_id`, `name`, `name_bn`, `url`, `created_at`, `updated_at`) VALUES
 (4455, 482, 'Asma', 'আসমা', 'asma.netrokona.gov.bd', NULL, NULL),
 (4456, 482, 'Chhiram', 'চিরাম', 'chhiram.netrokona.gov.bd', NULL, NULL),
 (4457, 482, 'Baushi', 'বাউশী', 'baushiup.netrokona.gov.bd', NULL, NULL),
@@ -4591,39 +4546,3 @@ INSERT INTO `unions` (`id`, `upazilla_id`, `name`, `bn_name`, `url`, `created_at
 (4538, 491, 'Rouha', 'রৌহা', 'rouhaup.netrokona.gov.bd', NULL, NULL),
 (4539, 491, 'Medni', 'মেদনী', 'medniup.netrokona.gov.bd', NULL, NULL),
 (4540, 491, 'Kaliara Babragati', 'কালিয়ারা গাবরাগাতি', 'kaliaragabragatiup.netrokona.gov.bd', NULL, NULL);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `unions`
---
--- ALTER TABLE `unions`
-  -- ADD PRIMARY KEY (`id`),
-  -- ADD KEY `upazilla_id` (`upazilla_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `unions`
---
-ALTER TABLE `unions`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4541;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `unions`
---
-ALTER TABLE `unions`
-  ADD CONSTRAINT `unions_ibfk_2` FOREIGN KEY (`upazilla_id`) REFERENCES `upazilas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

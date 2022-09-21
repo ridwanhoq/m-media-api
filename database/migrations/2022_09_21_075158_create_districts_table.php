@@ -19,6 +19,8 @@ class CreateDistrictsTable extends Migration
             $table->string('name');
             $table->string('name_bn');
             $table->string('url')->nullable();
+            $table->string('lat')->nullable();
+            $table->string('lon')->nullable();
             $table->boolean('is_active')->default(0);
             $table->timestamps();
         });
