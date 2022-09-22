@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TaskFactory extends Factory
+class TaskReviewFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,7 +14,7 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            'title'      => $this->faker->unique()->uuid(),
+            //
         ];
     }
 }

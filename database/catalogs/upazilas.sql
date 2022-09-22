@@ -489,4 +489,6 @@ INSERT INTO `upazilas` (`id`, `district_id`, `name`, `name_bn`, `url`, `created_
 (488, 64, 'Kalmakanda', 'কলমাকান্দা', 'kalmakanda.netrokona.gov.bd', NULL, NULL),
 (489, 64, 'Mohongonj', 'মোহনগঞ্জ', 'mohongonj.netrokona.gov.bd', NULL, NULL),
 (490, 64, 'Purbadhala', 'পূর্বধলা', 'purbadhala.netrokona.gov.bd', NULL, NULL),
-(491, 64, 'Netrokona Sadar', 'নেত্রকোণা সদর', 'netrokonasadar.netrokona.gov.bd', NULL, NULL);
+(491, 64, 'Netrokona Sadar', 'নেত্রকোণা সদর', 'netrokonasadar.netrokona.gov.bd', NULL, NULL),
+(NULL, 47, 'Dhaka South City Corporation', 'ঢাকা দক্ষিণ সিটি কর্পোরেশন', 'http://www.dscc.gov.bd/', NULL, NULL),
+(NULL, 47, 'Dhaka North City Corporation', 'ঢাকা উত্তর সিটি কর্পোরেশন', 'http://www.dncc.gov.bd/', NULL, NULL);
