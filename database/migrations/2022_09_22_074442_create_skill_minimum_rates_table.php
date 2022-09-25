@@ -15,7 +15,7 @@ class CreateSkillMinimumRatesTable extends Migration
     {
         Schema::create('skill_minimum_rates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('skill_id')->constrained()->onDelete('cascade');
+            $table->foreignId('skill_id')->unique()->constrained()->onDelete('cascade');
             $table->string('skill_score')->default(1);
             $table->string('minimum_rate_per_minute')->default(1);//usd
             $table->timestamps();

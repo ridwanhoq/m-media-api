@@ -17,6 +17,7 @@ class CreateSkillSubSpecialitiesTable extends Migration
             $table->id();
             $table->foreignId('skill_speciality_id')->constrained()->onDelete('cascade');
             $table->string('title');
+            $table->unique(['title', 'skill_speciality_id'], 'title_skill_speciality_unique');
             $table->string('description')->nullable();
             $table->boolean('is_active')->default(1);
             $table->timestamps();

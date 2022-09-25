@@ -41,7 +41,7 @@ class UserController extends Controller
 
             // return $this->handleResponse($this->apiDataListed($this->item_name), 200, $result);
 
-            $users_data = UserResource::collection(
+            $data = UserResource::collection(
                 User::latest()->paginate(10)
             );
 
@@ -49,8 +49,8 @@ class UserController extends Controller
                 $this->apiDataListed($this->item_name),
                 200,
                 [
-                    "links" => $this->getPaginatedPages($users_data),
-                    "records" => $users_data
+                    "links" => $this->getPaginatedPages($data),
+                    "records" => $data
                 ]
             );
         } catch (Exception $error) {

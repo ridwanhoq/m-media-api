@@ -18,6 +18,7 @@ class CreateTaskMinimumSkillsTable extends Migration
             $table->foreignId('task_id')->constrained()->onDelete('cascade');
             $table->foreignId('skill_id')->constrained()->onDelete('cascade');
             $table->decimal('minimum_scores');
+            $table->unique(['task_id', 'skill_id'], 'task_skill_unique');
             $table->timestamps();
         });
     }
