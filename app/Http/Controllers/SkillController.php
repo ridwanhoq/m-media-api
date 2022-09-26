@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateRequest;
+use App\Http\Requests\SkillStoreRequest;
 use App\Http\Resources\SkillResource;
 use App\Models\Skill;
 use Exception;
@@ -29,7 +31,7 @@ class SkillController extends Controller
             $data = SkillResource::collection(
                 Skill::latest()->paginate(10)
             );
-            
+
             return $this->handleResponse(
                 $this->apiDataListed($this->item_name),
                 200,
@@ -37,11 +39,10 @@ class SkillController extends Controller
                     "links" => $this->getPaginatedPages($data),
                     "records" => $data
                 ]
-            );                
+            );
         } catch (Exception $error) {
             $this->handleError($error);
         }
-
     }
 
     /**
@@ -60,7 +61,7 @@ class SkillController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SkillStoreRequest $request)
     {
         try {
             return $this->handleResponse(
@@ -89,7 +90,7 @@ class SkillController extends Controller
 
             $result = Skill::find($id);
 
-            if(empty($result)){
+            if (empty($result)) {
                 return $this->handleResponse(
                     $this->apiNoDataError($this->item_name)
                 );
@@ -127,7 +128,7 @@ class SkillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         try {
             $skill = Skill::find($id);
 
@@ -139,7 +140,6 @@ class SkillController extends Controller
         } catch (Exception $error) {
             return $this->handleError($error);
         }
-        
     }
 
     /**
@@ -148,9 +148,27 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skill $skill)
+    public function destroy($id)
     {
-        //
+        try {
+
+            $skill = Skill::find($id);
+
+            if (empty($skill)) {
+                return $this->handleResponse(
+                    $this->apiNoDataError($this->item_name)
+                );
+            }
+
+            $skill->delete();
+
+            return $this->handleResponse(
+                $this->apiDataDeleted($this->item_name),
+                200
+            );
+        } catch (Exception $error) {
+            return $this->handleError($error);
+        }
     }
 
     protected function inputFields(): array

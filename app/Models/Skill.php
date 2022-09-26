@@ -12,6 +12,6 @@ class Skill extends Model
     protected $guarded = [];
 
     public static $rules = [
-        'title' => 'required'
+        'title' => 'required|unique:skills'
     ];
 }
