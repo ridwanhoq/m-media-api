@@ -18,7 +18,7 @@
     >> is_active (default:0)
 
 
->> skill_minimum_rates
+>> skill_minimum_rates (1-#)
     >> skill_id
     >> skill_score (default:1)
     >> minimum_rate_per_minute
@@ -78,4 +78,26 @@
     >> minimum_score
 >> 
 
----------------------------------------------------------------------
+--------------------------------------------------------------------
+## steps to follow
+    >> employer
+        >> deposit
+        >> task create
+            >> reply if any review requested
+            >> task review
+        >> support ticket create
+            >> add reply
+        >> withdraw
+
+    >> worker
+        >> task submit
+            >> reply if any review requested 
+        >> support ticket create
+            >> add reply
+        >> withdraw
+    >> admin
+        >> process deposit
+        >> process task
+        >> process withdraw
+        >> reply support ticket
+--------------------------------------------------------------------
