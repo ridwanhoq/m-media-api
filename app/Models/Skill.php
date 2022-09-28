@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Skill extends Model
 {
@@ -14,4 +13,7 @@ class Skill extends Model
     public static $rules = [
         'title' => 'required|unique:skills'
     ];
+
+    
+
 }
