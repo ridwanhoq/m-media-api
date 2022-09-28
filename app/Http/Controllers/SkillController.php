@@ -132,11 +132,21 @@ class SkillController extends Controller
         try {
             $skill = Skill::find($id);
 
+            if (empty($skill)) {
+                return $this->handleResponse(
+                    $this->apiNoDataError($this->item_name)
+                );
+            }
+
             $skill->update($request->all());
 
             $skill_data = new SkillResource($skill);
 
-            return $this->handleResponse($this->apiDataUpdated($this->item_name), 200, $skill_data);
+            return $this->handleResponse(
+                $this->apiDataUpdated($this->item_name),
+                200,
+                $skill_data
+            );
         } catch (Exception $error) {
             return $this->handleError($error);
         }

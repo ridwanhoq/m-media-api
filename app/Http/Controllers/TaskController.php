@@ -72,9 +72,27 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show($id)
     {
-        //
+        try {
+            $result = Task::find($id);
+
+            if (empty($result)) {
+                return $this->handleResponse(
+                    $this->apiNoDataError($this->item_name)
+                );
+            }
+
+            $data   = new TaskResource($result);
+
+            return $this->handleResponse(
+                $this->apiDataShown($this->item_name),
+                200,
+                $data
+            );
+        } catch (Exception $error) {
+            return $this->handleError($error);
+        }
     }
 
     /**
