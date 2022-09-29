@@ -15,9 +15,9 @@ class CreateAreasTable extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('union_id')->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->string('name_bn');
+            $table->foreignId('union_id')->constrained()->onDelete('cascade')->unique();
+            $table->string('name')->unique();
+            $table->string('name_bn')->unique();
             $table->string('url')->nullable();
             $table->boolean('is_active')->default(0);
             $table->timestamps();

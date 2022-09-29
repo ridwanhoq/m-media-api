@@ -16,8 +16,8 @@ class CreateDistrictsTable extends Migration
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('division_id')->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->string('name_bn');
+            $table->string('name')->unique();
+            $table->string('name_bn')->unique();
             $table->string('url')->nullable();
             $table->string('lat')->nullable();
             $table->string('lon')->nullable();

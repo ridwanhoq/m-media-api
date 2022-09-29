@@ -22,8 +22,6 @@ class SkillResource extends JsonResource
             "description"   => $this->description ?? "",
             "created_at"    => $this->created_at,
             "updated_at"    => $this->updated_at
-            // "created_at"    => $this->convertToYmdhisFormat($this->created_at),
-            // "updated_at"    => $this->convertToYmdHisFormat($this->updated_at)
         ];
     }
 }

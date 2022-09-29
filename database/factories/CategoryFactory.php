@@ -14,8 +14,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            "title_en"      => $this->faker->unique()->uuid(),
-            "title_bn"      => $this->faker->unique()->uuid(),
+            "title"         => $this->faker->unique()->uuid(),
             "description"   => $this->faker->sentence()
         ];
     }

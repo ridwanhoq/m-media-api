@@ -9,12 +9,18 @@ class Model extends EloquentModel{
 
     use DateTimeFormatterTrait;
 
-    protected $casts = [
+    public $casts = [
         "created_at"    => "datetime:Y-m-d H:i:s a",
         "updated_at"    => "datetime:Y-m-d H:i:s a"
     ];
 
+    public function getCreatedAtAttribute($value){
+        return $this->convertToYmdHisFormat($value);
+    }
 
+    public function getUpdatedAtAttribute($value){
+        return $this->convertToYmdHisFormat($value);
+    }
 
 
 }

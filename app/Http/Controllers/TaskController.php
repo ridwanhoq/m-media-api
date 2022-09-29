@@ -63,7 +63,19 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            return $this->handleResponse(
+                $this->apiDataInserted($this->item_name),
+                201,
+                [
+                    "records"   =>  new TaskResource(
+                        Task::create($request->all())
+                    )
+                ]
+            );
+        } catch (Exception $error) {
+            return $this->handleError($error);
+        }
     }
 
     /**
@@ -128,4 +140,5 @@ class TaskController extends Controller
     {
         //
     }
+
 }

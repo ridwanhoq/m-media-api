@@ -69,7 +69,7 @@ class SkillController extends Controller
                 201,
                 [
                     "records"   =>  new SkillResource(
-                        Skill::create($this->inputFields())
+                        Skill::create($request->all())
                     )
                 ]
             );
@@ -180,12 +180,5 @@ class SkillController extends Controller
             return $this->handleError($error);
         }
     }
-
-    protected function inputFields(): array
-    {
-        return [
-            'title'         => request()->title,
-            'description'   => request()->description,
-        ];
-    }
+    
 }
