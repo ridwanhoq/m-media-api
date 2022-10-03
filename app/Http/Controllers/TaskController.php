@@ -69,7 +69,7 @@ class TaskController extends Controller
                 201,
                 [
                     "records"   =>  new TaskResource(
-                        Task::create($request->all())
+                        Task::create($request->only(Task::fields()))
                     )
                 ]
             );

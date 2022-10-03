@@ -8,12 +8,24 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     public static $rules = [
-        'title_en'  => 'required|string:150',
-        'title_bn'  => 'required|string:150'
+        "title"  => "required|string:150|unique:tasks",
     ];
+
+    public static function fields() {
+        return  [
+            "title",             
+            "description",       
+            "hours_to_finish",
+            "minutes_to_finish",
+            "positions",
+            "rate"   
+        ];
+    }
+        
+    
 
 
 }

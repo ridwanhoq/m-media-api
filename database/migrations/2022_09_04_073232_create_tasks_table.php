@@ -17,10 +17,10 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->string('description')->nullable();
-            $table->string('hours_to_finish')->default(0);
-            $table->string('minutes_to_finish')->default(5);
-            $table->string('positions')->default(1);
-            $table->string('rate')->default(1);
+            $table->integer('hours_to_finish')->default(0);
+            $table->integer('minutes_to_finish')->default(5);
+            $table->integer('positions')->default(1);
+            $table->decimal('rate', 8, 2)->default(1);
             $table->timestamps();
         });
     }
