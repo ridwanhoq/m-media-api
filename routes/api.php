@@ -50,20 +50,21 @@ Route::group(['prefix' => 'v1'], function () {
         //users
         Route::resource('users', UserController::class);
         
-        //deposits
-        Route::resource('deposits', UserDepositController::class);
-        
-        //withdraws
-        Route::resource('withdraws', UserWithdrawController::class);
+        //skills
+        Route::resource('skills', SkillController::class);
 
         //specialities
         Route::resource('specialities', SkillSpecialityController::class);
 
         //sub specialities
         Route::resource('sub_specialities', SkillSubSpecialityController::class);
+        
+        //deposits
+        Route::resource('deposits', UserDepositController::class);
+        
+        //withdraws
+        Route::resource('withdraws', UserWithdrawController::class);
 
-        //skills
-        Route::resource('skills', SkillController::class);
 
         //categories
         Route::resource('categories', CategoryController::class);
