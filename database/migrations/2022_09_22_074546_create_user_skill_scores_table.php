@@ -17,7 +17,7 @@ class CreateUserSkillScoresTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('skill_id')->constrained()->onDelete('cascade');
-            $table->string('skill_score');
+            $table->integer('skill_score')->default(1);
             $table->unique(['skill_score', 'user_id', 'skill_id'], 'skill_score_skill_user_unique');
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Skill;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SkillMinimumRateFactory extends Factory
@@ -14,7 +15,7 @@ class SkillMinimumRateFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'skill_id'      => Skill::factory()->create()->id
         ];
     }
 }

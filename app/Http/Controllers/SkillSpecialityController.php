@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class SkillSpecialityController extends Controller
 {
+
+    private $item_name;
+
+    public function __construct(){
+        $this->item_name    = "Skill speciality";
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -59,7 +66,7 @@ class SkillSpecialityController extends Controller
                 $this->apiDataInserted($this->item_name),
                 201,
                 [
-                    "records"   =>  new SkillSpeciality(
+                    "records"   =>  new SkillSpecialityResource(
                         SkillSpeciality::create($request->all())
                     )
                 ]
@@ -166,6 +173,7 @@ class SkillSpecialityController extends Controller
                 $this->apiDataDeleted($this->item_name),
                 200
             );
+
         } catch (Exception $error) {
             return $this->handleError($error);
         }

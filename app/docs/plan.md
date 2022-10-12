@@ -10,6 +10,7 @@
     >> title 
     >> description [nullable]
     >> is_active (default:0)
+        >> title, skill_id unique
 
 >> skill_sub_specialities [laravel] (1-#)
     >> skill_speciality_id

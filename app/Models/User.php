@@ -58,7 +58,10 @@ class User extends Authenticatable
         ];
     }
 
-
+    //relations
+    public function user_skill_scores(){
+        return $this->hasMany(UserSkillScore::class);
+    }
 
 
 

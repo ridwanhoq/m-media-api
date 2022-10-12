@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SkillSpecialityResource;
+use App\Models\SkillSpeciality;
 use App\Models\SkillSubSpeciality;
+use Exception;
 use Illuminate\Http\Request;
 
 class SkillSubSpecialityController extends Controller
@@ -33,9 +36,21 @@ class SkillSubSpecialityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( $request)
     {
-        //
+        try {
+            return $this->handleResponse(
+                $this->apiDataInserted($this->item_name),
+                201,
+                [
+                    "records"   =>  new SkillSpecialityResource(
+                        SkillSpeciality::create($request->all())
+                    )
+                ]
+            );
+        } catch (Exception $error) {
+            return $this->handleError($error);
+        }
     }
 
     /**
