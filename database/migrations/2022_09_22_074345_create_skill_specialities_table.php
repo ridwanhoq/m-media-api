@@ -19,7 +19,6 @@ class CreateSkillSpecialitiesTable extends Migration
             $table->string('title');
             $table->unique(['title', 'skill_id'], 'title_skill_unique');
             $table->string('description')->nullable();
-            $table->unique(['title', 'skill_id']);
             $table->boolean('is_active')->default(1);
             $table->timestamps();
         });

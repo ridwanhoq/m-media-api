@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Http\Components\Services\DbService;
 use App\Models\Skill;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,7 +16,7 @@ class SkillMinimumRateFactory extends Factory
     public function definition()
     {
         return [
-            'skill_id'      => Skill::factory()->create()->id
+            'skill_id'      => (new DbService)->randomOrCreate(Skill::class)->id
         ];
     }
 }

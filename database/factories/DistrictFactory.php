@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Http\Components\Services\DbService;
 use App\Models\Division;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,7 +16,7 @@ class DistrictFactory extends Factory
     public function definition()
     {
         return [
-            'division_id'   => Division::pluck('id')->random(),
+            'division_id'   => (new DbService)->randomOrCreate(Division::class)->id,
             'name'          => $this->faker->word(),
             'name_bn'       => $this->faker->word(),
         ];

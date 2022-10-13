@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Http\Components\Services\DbService;
 use App\Models\District;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,7 +16,7 @@ class UpazilaFactory extends Factory
     public function definition()
     {
         return [
-            'district_id'   => District::pluck('id')->random(),
+            'district_id'   => (new DbService)->randomOrCreate(District::class)->id,
             'name'          => $this->faker->word(),
             'name_bn'       => $this->faker->word(),
         ];

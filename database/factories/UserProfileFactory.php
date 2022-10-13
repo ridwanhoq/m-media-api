@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Http\Components\Services\DbService;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserProfileFactory extends Factory
@@ -14,7 +16,7 @@ class UserProfileFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id'   => (new DbService)->randomOrCreate(User::class)->id
         ];
     }
 }

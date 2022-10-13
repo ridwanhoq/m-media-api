@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Http\Components\Services\DbService;
+use App\Models\Skill;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SkillSpecialityFactory extends Factory
@@ -14,7 +16,8 @@ class SkillSpecialityFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "skill_id"  => (new DbService)->randomOrCreate(Skill::class)->id,
+            "title"     => $this->faker->unique()->uuid()
         ];
     }
 }

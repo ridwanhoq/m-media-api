@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Http\Components\Services\DbService;
+use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TaskStatusFactory extends Factory
@@ -14,7 +16,7 @@ class TaskStatusFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "task_id"   => (new DbService)->randomOrCreate(Task::class)->id
         ];
     }
 }

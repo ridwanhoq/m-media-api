@@ -58,6 +58,8 @@ class TestCommand extends Command
         // dd(Skill::with('user_skill_scores')->get());
 
         // dd(UserSkillScore::with('user', 'skill')->get());
+        
+        
 
     }
 }

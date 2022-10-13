@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Http\Components\Services\DbService;
 use App\Models\Union;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,7 +16,7 @@ class AreaFactory extends Factory
     public function definition()
     {
         return [
-            'union_id'      => Union::pluck('id')->random(),
+            'union_id'      => (new DbService)->randomOrCreate(Union::class)->id,
             'name'          => $this->faker->word(),
             'name_bn'       => $this->faker->word(),
         ];
