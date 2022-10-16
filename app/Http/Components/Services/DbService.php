@@ -9,9 +9,9 @@ class DbService
 
     public function randomOrCreate($model = null)
     {
-        if ($model instanceof Model) {
+        // if ($model instanceof Model) {
             return $model::count() <= 0 ? $this->createRecord($model) : $model::all()->random();
-        }
+        // }
 
         return;
     }
