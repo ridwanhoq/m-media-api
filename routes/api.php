@@ -61,6 +61,7 @@ Route::group(['prefix' => 'v1'], function () {
         
         //deposits
         Route::resource('deposits', UserDepositController::class);
+        Route::put('process_deposit_request/{id}', [UserDepositController::class, 'processDepositRequest']);
         
         //withdraws
         Route::resource('withdraws', UserWithdrawController::class);

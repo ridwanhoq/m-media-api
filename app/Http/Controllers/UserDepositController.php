@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserDepositProcessRequest;
+use App\Http\Requests\UserDepositStoreRequest;
 use App\Http\Resources\UserDepositResource;
 use App\Models\UserDeposit;
 use Exception;
@@ -58,12 +60,21 @@ class UserDepositController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(UserDepositStoreRequest $request)
     {
         try {
 
-
             
+
+            return $this->handleResponse(
+                $this->apiDataInserted($this->item_name),
+                201,
+                [
+                    "records"   =>  new UserDepositResource(
+                        UserDeposit::create($request->all())
+                    )
+                ]
+            );
         } catch (Exception $error) {
             return $this->handleError($error);
         }
@@ -116,9 +127,29 @@ class UserDepositController extends Controller
      * @param  \App\Models\UserDeposit  $userDeposit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserDeposit $userDeposit)
+    public function update(UserDepositStoreRequest $request, $id)
     {
-        //
+        try {
+            $deposit = UserDeposit::find($id);
+
+            if (empty($deposit)) {
+                return $this->handleResponse(
+                    $this->apiNoDataError($this->item_name)
+                );
+            }
+
+            $deposit->update($request->all());
+
+            $deposit_data = new UserDepositResource($deposit);
+
+            return $this->handleResponse(
+                $this->apiDataUpdated($this->item_name),
+                200,
+                $deposit_data
+            );
+        } catch (Exception $error) {
+            return $this->handleError($error);
+        }
     }
 
     /**
@@ -131,4 +162,30 @@ class UserDepositController extends Controller
     {
         //
     }
+
+    public function processDepositRequest(UserDepositProcessRequest $request, $id)
+    {
+
+        try {
+            $deposit    = UserDeposit::find($id);
+
+            $deposit->update([
+                "amount"    => $request->amount,
+                "status"    => $request->status
+            ]);
+
+            
+            $deposit_data = new UserDepositResource($deposit);
+
+            return $this->handleResponse(
+                $this->apiDataUpdated($this->item_name),
+                200,
+                $deposit_data
+            );
+
+        } catch (Exception $error) {
+            return $this->handleError($error);
+        }
+    }
+
 }
