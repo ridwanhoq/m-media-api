@@ -7,11 +7,17 @@ use App\Models\UserDeposit;
 class UserDepositRepository
 {
 
-    public function checkUserHasNoPendingRequests($userId)
+    public function checkLoggedUserHasNoPendingRequests()
     {
-
-        $totalPendingRequestsByUserId = UserDeposit::TotalRequestsByStatus()
-            ->count();
-            
+        return UserDeposit::loggedUser()->PendingReqeusts()->count();
     }
+
+    
+
+
+
+
+
+
+
 }

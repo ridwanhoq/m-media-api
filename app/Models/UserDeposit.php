@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class UserDeposit extends Model
 {
@@ -16,8 +16,6 @@ class UserDeposit extends Model
      */
     public static $pending_status = 1;
     
-    
-
     public static $rules =[
         "user_id"   => "required",
         "amount"    => "required",

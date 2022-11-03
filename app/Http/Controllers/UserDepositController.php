@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Components\Repositories\UserDepositRepository;
 use App\Http\Requests\UserDepositProcessRequest;
 use App\Http\Requests\UserDepositStoreRequest;
 use App\Http\Resources\UserDepositResource;
@@ -64,7 +65,12 @@ class UserDepositController extends Controller
     {
         try {
 
-            
+            //check logged user has no pending requests
+            $userPendingDepositCount = (new UserDepositRepository)->checkLoggedUserHasNoPendingRequests();
+
+            if ($userPendingDepositCount > 0) {
+                return $this->handleResponse(__("You can only deposit if you have no pending deposits."), 400);
+            }
 
             return $this->handleResponse(
                 $this->apiDataInserted($this->item_name),
@@ -174,7 +180,7 @@ class UserDepositController extends Controller
                 "status"    => $request->status
             ]);
 
-            
+
             $deposit_data = new UserDepositResource($deposit);
 
             return $this->handleResponse(
@@ -182,10 +188,8 @@ class UserDepositController extends Controller
                 200,
                 $deposit_data
             );
-
         } catch (Exception $error) {
             return $this->handleError($error);
         }
     }
-
 }

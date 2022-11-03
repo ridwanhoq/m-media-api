@@ -11,5 +11,8 @@ class Model extends EloquentModel{
         return $query->orderBy('id');
     }
 
+    public function scopeLoggedUser($query){
+        return $query->where('user_id', auth()->user()->id);
+    }
 
 }
